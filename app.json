@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/android-adaptive-icon.png",
+        "foregroundImage": "./assets/android-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.shubhenduxd.HopeLink"
