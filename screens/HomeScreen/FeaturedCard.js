@@ -3,6 +3,25 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const FeaturedCard = ({ post }) => {
   const navigation = useNavigation();
+
+  const shrinkText = (text) => {
+    const maxSize = 15;
+    if (text.length <= maxSize) return text;
+
+    return text.substring(0, maxSize) + "...";
+  };
+
+  const images = {
+    1: require("../../assets/images/card-1.jpg"),
+    2: require("../../assets/images/card-2.jpg"),
+    3: require("../../assets/images/card-3.jpg"),
+    4: require("../../assets/images/card-4.jpg"),
+    5: require("../../assets/images/card-5.jpg"),
+  };
+
+  const image =
+    images[post.id] || require("../../assets/images/card-1.jpg");
+
   return (
     <TouchableOpacity
       style={{
@@ -17,7 +36,7 @@ const FeaturedCard = ({ post }) => {
     >
       <View>
         <Image
-          source={require("../../assets/images/image1.jpg")}
+          source={image}
           style={{
             height: 200,
             width: 200,
@@ -26,7 +45,9 @@ const FeaturedCard = ({ post }) => {
       </View>
 
       <View style={{ padding: 10 }}>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{post?.title}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          {shrinkText(post?.title)}
+        </Text>
 
         <View style={{ marginVertical: 10 }}>
           <Text style={{ color: "#00000066", fontSize: 12 }}>

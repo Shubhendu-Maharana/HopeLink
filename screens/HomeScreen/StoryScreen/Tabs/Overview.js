@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import { supabase } from "../../../../utils/supabase";
 import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 
@@ -25,16 +26,23 @@ const Overview = ({ post }) => {
 
     getNeeder();
   }, []);
+
+  const images = {
+    1: require("../../../../assets/images/card-1.jpg"),
+    2: require("../../../../assets/images/card-2.jpg"),
+    3: require("../../../../assets/images/card-3.jpg"),
+    4: require("../../../../assets/images/card-4.jpg"),
+    5: require("../../../../assets/images/card-5.jpg"),
+  };
+
+  const image =
+    images[post.id] || require("../../../../assets/images/card-1.jpg");
+
   return (
-    <View
-      style={{ flex: 1, justifyContent: "space-between", paddingBottom: 20 }}
-    >
+    <ScrollView style={{ flex: 1, paddingBottom: 30 }}>
       <View>
         <View>
-          <Image
-            source={require("../../../../assets/images/image1.jpg")}
-            style={{ height: width / 2, width: "100%" }}
-          />
+          <Image source={image} style={{ height: width / 2, width: "100%" }} />
         </View>
 
         <View style={{ padding: 20 }}>
@@ -84,7 +92,7 @@ const Overview = ({ post }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

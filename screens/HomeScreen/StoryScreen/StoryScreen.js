@@ -21,6 +21,13 @@ const StoryScreen = ({ route }) => {
 
   const tabs = ["Overview", "Documents", "Updates"];
 
+  const shrinkText = (text) => {
+    const maxSize = 24;
+    if (text.length <= maxSize) return text;
+
+    return text.substring(0, maxSize) + "...";
+  };
+
   return (
     <View
       style={{
@@ -48,7 +55,7 @@ const StoryScreen = ({ route }) => {
             color: "#fff",
           }}
         >
-          {post?.title}
+          {shrinkText(post?.title)}
         </Text>
       </View>
 
@@ -95,11 +102,7 @@ const StoryScreen = ({ route }) => {
           borderTopRightRadius: 20,
         }}
       >
-        {activeTab === 0 && (
-          <Overview
-            post={post}
-          />
-        )}
+        {activeTab === 0 && <Overview post={post} />}
         {activeTab === 1 && <Documents />}
         {activeTab === 2 && <Updates />}
       </View>
